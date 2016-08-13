@@ -1,0 +1,23 @@
+
+<h2>Your cart</h2>
+
+<table>
+
+  <tr>
+    <th>Quantity</th>
+    <th>Make</th>
+    <th>Price</th>
+
+
+  </tr>
+
+  <%= render(@cart.line_items) %>
+
+
+</table>
+<br />
+Total price : <b><%=  number_to_currency(@cart.total_price, :unit => '&euro;') %></b><br/>
+<br />
+
+<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
+<%= button_to 'Checkout', new_payment_path, :method => :get %>

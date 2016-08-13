@@ -1,0 +1,67 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>Motorbike details</h1>
+<p>
+  <b>Make:</b>
+  <%= @motorbike.make %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%= @motorbike.model %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @motorbike.category %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @motorbike.year %>
+</p>
+
+<p>
+  <b>Mileage:</b>
+  <%= @motorbike.mileage %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @motorbike.description %>
+</p>
+
+<p>
+  <b>Enginesize:</b>
+  <%= @motorbike.engineSize %>
+</p>
+
+
+<p>
+  <div class="image">
+    <%= image_tag @motorbike.image, :width => 750 %>
+  </div>
+</p>
+
+
+
+<p>
+  <b>Price:</b>
+  <%= @motorbike.price %>
+</p>
+
+  <% if !logged_in? %>
+      <p class="red"><b>You must login to buy this item</b></p>
+  <% end %>
+
+<% if current_user && current_user.admin %>
+<%=link_to 'Edit details', edit_motorbike_path(@motorbike) %> |
+<% end %>
+
+<% if logged_in? %>
+   <%= button_to 'Add to cart', line_items_path(:motorbike_id => @motorbike) %>
+<% end %>
+
+<%= link_to 'Motorbikes listing', motorbikes_path %>
+

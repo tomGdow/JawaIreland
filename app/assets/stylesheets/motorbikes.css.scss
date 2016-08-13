@@ -1,0 +1,36 @@
+// Place all the styles related to the Motorbikes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#wrapper_motorbikes {
+  width: 750px;
+  float: right;
+}
+.motorbike_holder {
+  border-bottom: 1px solid #000;
+}
+
+.float_left {
+  float: left;
+}
+
+.float_right {
+  float: left;
+  width: 630px;
+  margin-left: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.button_to {
+  display: inline-block;
+  float:right;
+}
+
+.red {
+  color: #ff0000;
+}
+
+

@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+#wrapper {
+
+    width: 1224px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #CCC;
+    padding: 5px 20px 5px 0;
+}
+
+#header {
+    border-bottom: 2px solid #000;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+#header h1 {
+    text-align: center;
+}
+
+#navbar {
+    width: 250px;
+    float:left;
+
+    border-right: 1px solid black;
+
+}
+
+#navbar ul {
+    padding-left: 20px;
+    margin: 0px;
+    text-align:center;
+}
+
+#navbar li {
+    list-style: none;
+    font-size: 15px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+#navbar h2 {
+    text-align: center;
+}
+#navbar p {
+    text-align: center;
+}
+
+#navbar #cart {
+    margin-left: 20px;
+    width: 210px;
+    border-top: 1px solid #000;
+    margin-top: 20px;
+}
+#navbar #cart table {
+    border-collapse: collapse;
+}
+#navbar #cart th, td {
+    width: 70px;
+    text-align: center;
+}
+#navbar #cart th {
+    background-color: #ff0000;
+}
+
+#navbar #login {
+    margin-left: 20px;
+    width: 210px;
+    border-top: 1px solid #000;
+    margin-top: 20px;
+}
+
+.clear {
+    clear:both;
+}
+
+.footer {
+    text-align: right;
+}
+
+#content {
+    width: 950px;
+    float: right;
+}

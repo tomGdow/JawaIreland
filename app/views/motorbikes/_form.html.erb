@@ -1,0 +1,58 @@
+<%= form_for(@motorbike) do |f| %>
+  <% if @motorbike.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@motorbike.errors.count, "error") %> prohibited this motorbike from being saved:</h2>
+
+      <ul>
+      <% @motorbike.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :make, "Make *"  %><br />
+    <%= f.text_field :make, :placeholder => "Jawa" %>
+  </div>
+  <div class="field">
+    <%= f.label :model, "Model *" %><br />
+    <%= f.text_field :model, :placeholder => "specify model " %>
+  </div>
+  <div class="field">
+    <%= f.label :category, "Category *" %><br />
+    <%= f.text_field :category, :placeholder => "road, scooter, enduro" %>
+  </div>
+  <div class="field">
+    <%= f.label :year, "Year *" %><br />
+    <%= f.text_field :year, :placeholder => "numbers only" %>
+  </div>
+  <div class="field">
+    <%= f.label :mileage %><br />
+    <%= f.text_field :mileage %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Description *" %><br />
+    <%= f.text_area :description, :placeholder => "Minimum 20 characters" %>
+  </div>
+  <div class="field">
+    <%= f.label :engineSize, "Engine size *" %><br />
+    <%= f.text_field :engineSize, :placeholder => "numbers only" %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %><br />
+    or <br />
+    <%= f.label :remote_image_url %><br />
+    <%= f.text_field :remote_image_url %>
+  </div>
+  <div class="field">
+    <%= f.label :price, "Price *" %><br />
+    <%= f.text_field :price, :placeholder => "numbers only" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+    <p>* required</p>
+<% end %>

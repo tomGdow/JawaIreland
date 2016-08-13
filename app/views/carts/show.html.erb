@@ -1,0 +1,55 @@
+<div id="carts">
+
+<p id="notice"><%= notice %></p>
+
+
+
+
+
+  <table>
+
+    <tr>
+      <th>Image</th>
+      <th>Quantity</th>
+      <th>Make</th>
+      <th>Category</th>
+      <th>Year</th>
+      <th>Price</th>
+      <th>&nbsp;</th>
+
+
+    </tr>
+
+    <% @cart.line_items.each do |item| %>
+        <tr>
+          <td><%= image_tag item.motorbike.image, :height => 50, :width => 50, :title => item.motorbike.description %></td>
+          <td><%= item.quantity %>&times;</td>
+          <td><%= item.motorbike.make %></td>
+          <td><%= item.motorbike.category %></td>
+          <td><%= item.motorbike.year %></td>
+          <td><%= item.motorbike.price %> &euro;</td>
+
+
+          <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
+
+        </tr>
+     <% end %>
+
+
+  </table>
+
+  <br />
+  Total price : <b><%=  number_to_currency(@cart.total_price, :unit => '&euro;') %></b><br/>
+  <br />
+  <%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
+  <%= button_to 'Checkout', new_payment_path, :method => :get %>
+
+  <% if current_user && current_user.admin %>
+<%#= link_to 'Edit', edit_cart_path(@cart) %> |
+  <% end %>
+
+<%= link_to 'Motorbikes listing', motorbikes_path %>
+
+
+
+</div><!-- end of carts -->

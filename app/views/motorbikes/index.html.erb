@@ -1,0 +1,87 @@
+
+
+<h1>Motor Bikes</h1>
+
+<p id ="notice" ><%= notice %></p>
+
+<p>Search by:</p>
+<%= form_tag motorbikes_path, :method => 'get' do %>
+
+    <%= radio_button_tag(:search, "search_all", true) %>
+    <%= label_tag(:search_all, "All") %>
+
+    <%= radio_button_tag(:search,  "search_make") %>
+    <%= label_tag(:search_model, "Make ") %>
+
+    <%= radio_button_tag(:search, "search_category") %>
+    <%= label_tag(:search_category, "Category") %>
+
+    <%= radio_button_tag(:search, "search_description") %>
+    <%= label_tag(:search_description, "Description") %>
+
+
+
+
+
+
+    <p>
+      <%= text_field_tag :search_query, params[:search_query] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
+
+
+
+<%  if @motorbikes.empty? %>
+<p><%= render :text => "Could not find results for #{params[:search_query]}" %></p>
+<% end %>
+
+
+
+  <% @motorbikes.each do |motorbike| %>
+  <div class="motorbike_holder">
+
+       <div class="float_left">
+         <%= link_to image_tag(motorbike.image_url.to_s, :width => 100, :height => 100, :title => "Click to see more"), motorbike %>
+       </div>
+
+        <div class="float_right">
+          <p><b>Make:</b> <%= motorbike.make %></p>
+          <p><b>Category:</b> <%= motorbike.category %></p>
+          <p><b>Description:</b> <br /><%= motorbike.description %></p>
+          <p><b>Price:</b><%= motorbike.price %></p>
+
+        </div><!-- end of float_right -->
+
+          <div class="buttons">
+            <% if !logged_in? %>
+                <p class="red"><b>You must login to buy this item</b></p>
+            <% end %>
+
+            <p class="inline"><%= button_to 'Show details', motorbike, :method => :get %>
+          <% if current_user && current_user.admin %>
+
+                <%= button_to 'Edit', edit_motorbike_path(motorbike), :method => :get %>
+                <%= button_to 'Delete', motorbike, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+
+          <% if logged_in? %>
+              <%= button_to 'Add to cart', line_items_path(:motorbike_id => motorbike) %>
+          <% end %>
+            </p>
+          </div> <!-- end of buttons -->
+
+    <div class="clear">&nbsp;</div>
+   </div> <!-- end of motorbike_holder -->
+  <% end %>
+<br />
+
+  <% if current_user && current_user.admin %>
+<%= link_to 'Add New Motorbike', new_motorbike_path %>
+   <% end %>
+
+
+<%= will_paginate @motorbikes %>
+
+
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JawaIreland</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+  <h1> Jawa Supplies Ireland</h1>
+
+</div>
+
+
+<div id='navbar'>
+  <% if logged_in? %>
+      <p>Welcome <br />
+        <b><%= current_user.username %></b></p>
+
+      <p>You registered on <br />
+        <b><%= current_user.created_at %></b></p>
+   <% end %>
+
+  <ul>
+       <li> <%= link_to "Home page", :controller => "welcome", :action => "index" %></li>
+       <li><%= link_to "About Jawa Ireland", :controller => "welcome", :action => "about" %></li>
+    <li> <%= link_to "Motorbikes", motorbikes_path %> </li>
+    <li><%= link_to "Contact us", :controller => "welcome", :action => "contact" %></li>
+
+
+          <% if logged_in? %>
+        <li>  <%= link_to "Logout", logout_path %> </li>
+        <li>  <%= link_to "Your Cart", :controller => "carts", :action => "your_cart" %> </li>
+        <li>  <%= link_to "Your Profile", user_path(current_user) %> </li>
+
+          <% else %>
+        <li>  <%= link_to "Login", login_path %> </li>
+        <li>  <%= link_to "Register", :controller => "users",:action => "new"%> </li>
+          <% end %>
+
+
+
+          <% if current_user && current_user.admin %>
+        <li>  <%= link_to "Users", :controller => "users", :action => "index" %>  </li>
+        <li>  <%= link_to "Payments", :controller => "payments", :action => "index" %>  </li>
+          <% end %>
+  </ul>
+
+
+
+  <% if logged_in? %>
+      <div id="cart">
+
+
+        <%= render @cart%>
+
+
+
+      </div><!-- end of cart -->
+  <% end %>
+
+
+  <% if !logged_in? %>
+      <div id="login">
+        <p>Please log-in using username or password</p>
+
+        <p id ="notice" ><%= notice %></p>
+
+        <p id ="alert"><%=  flash.now[:alert] %></p>
+
+
+        <%= form_tag sessions_path do %>
+            <div class="field">
+              <%= label_tag :username %><br />
+              <%= text_field_tag :username %>
+            </div>
+
+            <h3>Or</h3>
+
+            <div class="field">
+              <%= label_tag :email %><br />
+              <%= text_field_tag :email %>
+            </div>
+
+            <div class="field">
+              <%= label_tag :password %><br />
+              <%= password_field_tag :password %>
+            </div>
+
+
+            <div class="actions">
+              <%= submit_tag 'Login' %>
+            </div>
+        <% end %>
+      </div><!-- end of cart -->
+  <% end %>
+
+
+</div><!-- end of navbar -->
+
+
+
+<div id="content">
+<%= yield %>
+</div>
+
+
+  <div class="clear">&nbsp;</div>
+  <hr/>
+  <p class="footer">Developed by <b><%= link_to "Josef Zacek", "http://www.josefzacek.com" %></b> &amp; <b><%= link_to "Thomas Dowling", "http://tomgdowling.netii.net" %></b></p>
+</div>  <!--End of wrapper div -->
+
+</body>
+</html>

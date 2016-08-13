@@ -1,0 +1,50 @@
+
+<div id="wrapper_payment">
+<h1>Please fill details bellow to process payment</h1>
+
+
+  <table>
+
+    <tr>
+      <th>Image</th>
+      <th>Quantity</th>
+      <th>Make</th>
+      <th>Category</th>
+      <th>Year</th>
+      <th>Price</th>
+      <th>&nbsp;</th>
+
+
+    </tr>
+
+    <% @cart.line_items.each do |item| %>
+        <tr>
+          <td><%= image_tag item.motorbike.image, :height => 50, :width => 50, :title => item.motorbike.description %></td>
+          <td><%= item.quantity %>&times;</td>
+          <td><%= item.motorbike.make %></td>
+          <td><%= item.motorbike.category %></td>
+          <td><%= item.motorbike.year %></td>
+          <td><%= item.motorbike.price %> &euro;</td>
+
+
+          <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
+
+        </tr>
+    <% end %>
+
+
+  </table>
+
+  <br />
+
+
+
+
+  <p> Total price : <b><%=  number_to_currency(@cart.total_price, :unit => '&euro;') %></b><br/>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', payments_path %>
+
+
+    </div>
